@@ -125,6 +125,27 @@ void Image::greyScale()
 void Image::flipHorizontal()
 {
 
+    int pixels[3];
+    unsigned int temp1;
+    unsigned int temp2;
+    for(int y= 0; y < h; ++y)
+    {
+        for(int x =0; x <w/2; ++x)
+        {
+            temp1 = x + y * w;
+            temp2 = (w - 1 - x) + y * w;
+
+            pixels[0] = this->pixels[temp1].r;
+            pixels[1] = this->pixels[temp1].g;
+            pixels[2] = this->pixels[temp1].b;
+
+            this->pixels[temp1] = this->pixels[temp2];
+
+            this->pixels[temp2].r = pixels[0];
+            this->pixels[temp2].g = pixels[1];
+            this->pixels[temp2].b = pixels[2];
+        }
+    }
 
 }
 void Image::flipVertically()
