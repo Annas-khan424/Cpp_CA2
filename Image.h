@@ -57,6 +57,12 @@ public:
     int getHeight();
     ~Image() { if (pixels != nullptr) delete [] pixels; }
 
+    Image(const unsigned int _w, const unsigned int _h, bool _side) :
+            w(_w), h(_h), pixels(nullptr)
+    {
+        pixels = new Rgb[h * w];
+
+    }
 };
 
 
