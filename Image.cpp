@@ -90,11 +90,11 @@ void Image::filterRed()
 }
 void Image::filterGreen()
 {
-//    for(int i = 0; i < h*w; i++)
-//    {
-//        this->pixels[i].r = 0;
-//        this->pixels[i].b = 0;
-//    }
+    for(int i = 0; i < h*w; i++)
+    {
+        this->pixels[i].r = 0;
+        this->pixels[i].b = 0;
+    }
 
 }
 void Image::filterBlue()
