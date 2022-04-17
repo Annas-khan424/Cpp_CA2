@@ -99,11 +99,11 @@ void Image::filterGreen()
 }
 void Image::filterBlue()
 {
-//    for(int i = 0; i < h*w; i++)
-//    {
-//        this->pixels[i].r = 0;
-//        this->pixels[i].g = 0;
-//    }
+    for(int i = 0; i < h*w; i++)
+    {
+        this->pixels[i].r = 0;
+        this->pixels[i].g = 0;
+    }
 
 }
 void Image::greyScale()
