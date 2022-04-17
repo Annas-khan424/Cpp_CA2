@@ -184,7 +184,59 @@ void Image::AdditionalFunction3()
 }
 void Image::AdditionalFunction1()
 {
+//  contrast the image to  gray
 
+    for(int i = 0; i < h*w; i++)
+    {
+        int r = this->pixels[i].r;
+        int g = this->pixels[i].g;
+        int b = this->pixels[i].b;
+
+        double greyed_unrounded = (double)(r + g + b) / 3;
+        int greyed_rounded = round(greyed_unrounded);
+
+        if(greyed_rounded > 223) {
+            this->pixels[i].r = 255;
+            this->pixels[i].g = 255;
+            this->pixels[i].b = 255;
+        }
+        else if (greyed_rounded > 191) {
+            this->pixels[i].r = 223;
+            this->pixels[i].g = 223;
+            this->pixels[i].b = 223;
+        }
+        else if (greyed_rounded > 159) {
+            this->pixels[i].r = 191;
+            this->pixels[i].g = 191;
+            this->pixels[i].b = 191;
+        }
+        else if (greyed_rounded > 127) {
+            this->pixels[i].r = 159;
+            this->pixels[i].g = 159;
+            this->pixels[i].b = 159;
+        }
+        else if (greyed_rounded > 95) {
+            this->pixels[i].r = 127;
+            this->pixels[i].g = 127;
+            this->pixels[i].b = 127;
+        }
+        else if (greyed_rounded > 63) {
+            this->pixels[i].r = 95;
+            this->pixels[i].g = 95;
+            this->pixels[i].b = 95;
+        }
+        else if (greyed_rounded > 31) {
+            this->pixels[i].r = 63;
+            this->pixels[i].g = 63;
+            this->pixels[i].b = 63;
+        }
+        else
+        {
+            this->pixels[i].r = 31;
+            this->pixels[i].g = 31;
+            this->pixels[i].b = 31;
+        }
+    }
 }
 
 /* Functions used by the GUI - DO NOT MODIFY */
