@@ -192,9 +192,15 @@ void Image::AdditionalFunction2()
     this->pixels = rotImage->pixels;
     rotImage = nullptr;
 }
-void Image::AdditionalFunction3()
+void Image::AdditionalFunction3() //may be gonna change later i don't think its worth 10marks
 {
-
+    // negative
+    for (int i = 0; i < this->w * this->h; i++)
+    {
+        this->pixels[i].r = 255 - this->pixels[i].r;
+        this->pixels[i].g = 255 - this->pixels[i].g;
+        this->pixels[i].b = 255 - this->pixels[i].b;
+    }
 }
 void Image::AdditionalFunction1()
 {
