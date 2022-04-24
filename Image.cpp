@@ -175,8 +175,22 @@ void Image::flipVertically()
 
 }
 void Image::AdditionalFunction2()
+//rotate by 90 degree
 {
+    Image *rotImage = new Image(h,w);
 
+    for(int x = 0;  x< w;x++)    //x axis
+    {
+        for(int y = 0; y < h;y++)  //y axis
+        {
+            int offset = h * x + y;
+            rotImage->pixels[offset] = this->pixels[w * (h - 1 - y) + x];
+        }
+    }
+    swap(w,h);
+    delete[] this->pixels;
+    this->pixels = rotImage->pixels;
+    rotImage = nullptr;
 }
 void Image::AdditionalFunction3()
 {
