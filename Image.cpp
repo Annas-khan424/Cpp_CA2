@@ -47,8 +47,28 @@ bool Image::load(string filename)
 }
 bool Image::loadRaw(string filename)
 {
+    ifstream in(filename);
+    if(in.good())
+    {
+        in >> w;
+        in >> h;
+
+        for(int i = 0; i < w*h; i++)
+        {
+            float r, g, b;
+            in >> r >>g>>b;
+            this->pixels[i].r = (unsigned char)(std::max(0.f, std::min(255.f, powf(r, 1/2.2) * 255 + 0.5f)));
+            this->pixels[i].g = (unsigned char)(std::max(0.f, std::min(255.f, powf(g, 1/2.2) * 255 + 0.5f)));
+            this->pixels[i].b = (unsigned char)(std::max(0.f, std::min(255.f, powf(b, 1/2.2) * 255 + 0.5f)));
+        }
+        in.close();
+        return true;
+    }
     return false;
+
 }
+
+
 bool Image::savePPM(string filename)
 {
     if (this->w == 0 || this->h == 0) { fprintf(stderr, "Can't save an empty image\n"); return false; }
