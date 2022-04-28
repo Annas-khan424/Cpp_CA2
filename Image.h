@@ -1,9 +1,3 @@
-//
-// Created by floodd on 22/03/2022.
-//
-
-// Created by floodd on 11/02/2022.
-//
 
 
 #ifndef SDLTEST_TGA_FILEHANDLER_H

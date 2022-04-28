@@ -146,6 +146,7 @@ void processMenu(HWND hWnd, WPARAM wParam)
 
             image->AdditionalFunction4();
             break;
+
         case IDM_EDIT_Reset:
             if(fileType=="ppm")
             {

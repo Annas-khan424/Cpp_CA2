@@ -1,6 +1,4 @@
-//
-// Created by floodd on 23/03/2022.
-//
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
