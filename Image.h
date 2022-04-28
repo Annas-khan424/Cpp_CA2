@@ -50,6 +50,8 @@ public:
     void AdditionalFunction1();
     void AdditionalFunction2();
     void AdditionalFunction3();
+    void gamma();
+
 
     /*Functions used in the GUI - DO NOT MODIFY */
     Rgb* getImage();

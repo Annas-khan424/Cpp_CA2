@@ -202,62 +202,63 @@ void Image::AdditionalFunction3() //may be gonna change later i don't think its 
         this->pixels[i].b = 255 - this->pixels[i].b;
     }
 }
-void Image::AdditionalFunction1()
-{
+void Image::AdditionalFunction1() {
 //  contrast the image to  gray
 
-    for(int i = 0; i < h*w; i++)
-    {
+    for (int i = 0; i < h * w; i++) {
         int r = this->pixels[i].r;
         int g = this->pixels[i].g;
         int b = this->pixels[i].b;
 
-        double greyed_unrounded = (double)(r + g + b) / 3;
+        double greyed_unrounded = (double) (r + g + b) / 3;
         int greyed_rounded = round(greyed_unrounded);
 
-        if(greyed_rounded > 223) {
+        if (greyed_rounded > 223) {
             this->pixels[i].r = 255;
             this->pixels[i].g = 255;
             this->pixels[i].b = 255;
-        }
-        else if (greyed_rounded > 191) {
+        } else if (greyed_rounded > 191) {
             this->pixels[i].r = 223;
             this->pixels[i].g = 223;
             this->pixels[i].b = 223;
-        }
-        else if (greyed_rounded > 159) {
+        } else if (greyed_rounded > 159) {
             this->pixels[i].r = 191;
             this->pixels[i].g = 191;
             this->pixels[i].b = 191;
-        }
-        else if (greyed_rounded > 127) {
+        } else if (greyed_rounded > 127) {
             this->pixels[i].r = 159;
             this->pixels[i].g = 159;
             this->pixels[i].b = 159;
-        }
-        else if (greyed_rounded > 95) {
+        } else if (greyed_rounded > 95) {
             this->pixels[i].r = 127;
             this->pixels[i].g = 127;
             this->pixels[i].b = 127;
-        }
-        else if (greyed_rounded > 63) {
+        } else if (greyed_rounded > 63) {
             this->pixels[i].r = 95;
             this->pixels[i].g = 95;
             this->pixels[i].b = 95;
-        }
-        else if (greyed_rounded > 31) {
+        } else if (greyed_rounded > 31) {
             this->pixels[i].r = 63;
             this->pixels[i].g = 63;
             this->pixels[i].b = 63;
-        }
-        else
-        {
+        } else {
             this->pixels[i].r = 31;
             this->pixels[i].g = 31;
             this->pixels[i].b = 31;
         }
     }
 }
+    void Image::gamma()
+    {
+        float gamma=1/2.2f;
+        for (int i = 0; i < w * h; i++)
+        {
+            pixels[i].r = pow(pixels[i].r / 255.0f, gamma) * 255;
+            pixels[i].g = pow(pixels[i].g / 255.0f, gamma) * 255;
+            pixels[i].b = pow(pixels[i].b / 255.0f, gamma) * 255;
+        }
+    }
+
 
 /* Functions used by the GUI - DO NOT MODIFY */
 int Image::getWidth()
