@@ -50,6 +50,7 @@ public:
     void AdditionalFunction1();
     void AdditionalFunction2();
     void AdditionalFunction3();
+    void AdditionalFunction4();
     void gamma();
 
 
@@ -65,6 +66,7 @@ public:
         pixels = new Rgb[h * w];
 
     }
+
 };
 
 

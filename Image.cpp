@@ -212,7 +212,7 @@ void Image::AdditionalFunction2()
     this->pixels = rotImage->pixels;
     rotImage = nullptr;
 }
-void Image::AdditionalFunction3() //may be gonna change later i don't think its worth 10marks
+void Image::AdditionalFunction3()
 {
     // negative
     for (int i = 0; i < this->w * this->h; i++)
@@ -230,41 +230,46 @@ void Image::AdditionalFunction1() {
         int g = this->pixels[i].g;
         int b = this->pixels[i].b;
 
-        double greyed_unrounded = (double) (r + g + b) / 3;
-        int greyed_rounded = round(greyed_unrounded);
+        double red_unrounded = (double) (r + g + b) / 3;
+        int red_rounded = round(red_unrounded);
 
-        if (greyed_rounded > 223) {
+
+        if (red_rounded > 223) {
             this->pixels[i].r = 255;
             this->pixels[i].g = 255;
             this->pixels[i].b = 255;
-        } else if (greyed_rounded > 191) {
+        } else if (red_rounded > 191) {
             this->pixels[i].r = 223;
             this->pixels[i].g = 223;
             this->pixels[i].b = 223;
-        } else if (greyed_rounded > 159) {
+        } else if (red_rounded > 159) {
             this->pixels[i].r = 191;
             this->pixels[i].g = 191;
             this->pixels[i].b = 191;
-        } else if (greyed_rounded > 127) {
+        } else if (red_rounded > 127) {
             this->pixels[i].r = 159;
             this->pixels[i].g = 159;
             this->pixels[i].b = 159;
-        } else if (greyed_rounded > 95) {
+        } else if (red_rounded > 95) {
             this->pixels[i].r = 127;
             this->pixels[i].g = 127;
             this->pixels[i].b = 127;
-        } else if (greyed_rounded > 63) {
+        } else if (red_rounded > 63) {
             this->pixels[i].r = 95;
             this->pixels[i].g = 95;
             this->pixels[i].b = 95;
-        } else if (greyed_rounded > 31) {
+        } else if (red_rounded > 31) {
             this->pixels[i].r = 63;
             this->pixels[i].g = 63;
             this->pixels[i].b = 63;
-        } else {
+        }else if (red_rounded > 3) {
             this->pixels[i].r = 31;
             this->pixels[i].g = 31;
             this->pixels[i].b = 31;
+        } else {
+            this->pixels[i].r = 3;
+            this->pixels[i].g = 3;
+            this->pixels[i].b = 3;
         }
     }
 }
@@ -278,8 +283,36 @@ void Image::AdditionalFunction1() {
             pixels[i].b = pow(pixels[i].b / 255.0f, gamma) * 255;
         }
     }
+ void Image::AdditionalFunction4()
+{
+    // edge detection by using roberts cross method
+    // https://www.youtube.com/watch?v=0lOtl9JmLU4
+    // https://homepages.inf.ed.ac.uk/rbf/HIPR2/roberts.htm#:~:text=The%20Roberts%20Cross%20operator%20performs,image%2C%20as%20is%20the%20output.
+    for(int x = 0; x < h; ++x)
+    {
+        for(int y = 0; y < w; ++y)
+        {
+            int red = 0;
+            int green = 0;
+            int blue = 0;
+            if(x + 1 < h && y + 1 < w)
+            {
+                red = abs(pixels[(x + 1) * w + (y + 1)].r - pixels[(x + 1) * w + (y)].r) +
+                      abs(pixels[(x + 1) * w + (y + 1)].r - pixels[(x) * w + (y + 1)].r);
 
+                green = abs(pixels[(x + 1) * w + (y + 1)].g - pixels[(x + 1) * w + (y)].g) +
+                        abs(pixels[(x + 1) * w + (y + 1)].g - pixels[(x) * w + (y + 1)].g);
 
+                blue = abs(pixels[(x + 1) * w + (y + 1)].b - pixels[(x + 1) * w + (y)].b) +
+                       abs(pixels[(x + 1) * w + (y + 1)].b - pixels[(x) * w + (y + 1)].b);
+            }
+            pixels[x * w + y].r = red;
+            pixels[x * w + y].g = green;
+            pixels[x * w + y].b = blue;
+        }
+    }
+
+}
 /* Functions used by the GUI - DO NOT MODIFY */
 int Image::getWidth()
 {
