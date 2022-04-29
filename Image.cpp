@@ -221,46 +221,46 @@ void Image::AdditionalFunction3()
     }
 }
 void Image::AdditionalFunction1() {
-//  contrast the image to  gray
+//  increase the image contrast to gray with 9 level of shades
 
     for (int i = 0; i < h * w; i++) {
         int r = this->pixels[i].r;
         int g = this->pixels[i].g;
         int b = this->pixels[i].b;
 
-        double red_unrounded = (double) (r + g + b) / 3;
-        int red_rounded = round(red_unrounded);
+        double grey_unrounded = (double) (r + g + b) / 4;
+        int grey_rounded = round(grey_unrounded);
 
 
-        if (red_rounded > 223) {
+        if (grey_rounded > 223) {
             this->pixels[i].r = 255;
             this->pixels[i].g = 255;
             this->pixels[i].b = 255;
-        } else if (red_rounded > 191) {
+        } else if (grey_rounded > 190) {
             this->pixels[i].r = 223;
             this->pixels[i].g = 223;
             this->pixels[i].b = 223;
-        } else if (red_rounded > 159) {
-            this->pixels[i].r = 191;
-            this->pixels[i].g = 191;
-            this->pixels[i].b = 191;
-        } else if (red_rounded > 127) {
-            this->pixels[i].r = 159;
-            this->pixels[i].g = 159;
-            this->pixels[i].b = 159;
-        } else if (red_rounded > 95) {
-            this->pixels[i].r = 127;
-            this->pixels[i].g = 127;
-            this->pixels[i].b = 127;
-        } else if (red_rounded > 63) {
-            this->pixels[i].r = 95;
-            this->pixels[i].g = 95;
-            this->pixels[i].b = 95;
-        } else if (red_rounded > 31) {
+        } else if (grey_rounded > 149) {
+            this->pixels[i].r = 190;
+            this->pixels[i].g = 190;
+            this->pixels[i].b = 190;
+        } else if (grey_rounded > 117) {
+            this->pixels[i].r = 149;
+            this->pixels[i].g = 149;
+            this->pixels[i].b = 149;
+        } else if (grey_rounded > 85) {
+            this->pixels[i].r = 117;
+            this->pixels[i].g = 117;
+            this->pixels[i].b = 117;
+        } else if (grey_rounded > 63) {
+            this->pixels[i].r = 85;
+            this->pixels[i].g = 85;
+            this->pixels[i].b = 85;
+        } else if (grey_rounded > 31) {
             this->pixels[i].r = 63;
             this->pixels[i].g = 63;
             this->pixels[i].b = 63;
-        }else if (red_rounded > 3) {
+        }else if (grey_rounded > 3) {
             this->pixels[i].r = 31;
             this->pixels[i].g = 31;
             this->pixels[i].b = 31;
@@ -273,7 +273,7 @@ void Image::AdditionalFunction1() {
 }
     void Image::gamma()
     {
-        float gamma=1/2.2f;
+        float gamma=1/2.0f;
         for (int i = 0; i < w * h; i++)
         {
             pixels[i].r = pow(pixels[i].r / 255.0f, gamma) * 255;
